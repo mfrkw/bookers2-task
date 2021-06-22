@@ -1,4 +1,4 @@
-<% if book.errors.any? %>
+<% if @book.errors.any? %>
   <h3><%= book.errors.count %> errors prohibited this obj from being saved:</h3>
   <div id="error_explanation" class="alert alert-danger">
     <ul>
@@ -13,21 +13,19 @@
   <div class="profile-container">
   <%= attachment_image_tag user, :profile_image, :fill, 90, 100, format: 'jpeg', fallback: "no_image.jpg" %>
   </div>
-</div>
-
-
-        <table class="table">
-            <tbody>
-              <tr>
-                <th>name</th>
-                <td><%= user.name %></td>
-              </tr>
-              <tr>
-                <th>introduction</th>
-                <td><%= user.introduction %></td>
-              </tr>
-            </tbody>
-        </table>
+      
+      <table class="table">
+          <tbody>
+            <tr>
+              <th>name</th>
+              <td><%= user.name %></td>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <td><%= user.introduction %></td>
+            </tr>
+          </tbody>
+      </table>
             <%= link_to edit_user_path(user.id) do %>
             <button type="button" class="btn btn-outline-secondary w-100">
             <i class="fas fa-user-cog"></i>
@@ -50,5 +48,7 @@
       <div class="actions">
           <%= f.submit 'Create Book', class: "btn btn-success" %>
       </div>
+
       <% end %>
-</div>
+  </div>    
+      
