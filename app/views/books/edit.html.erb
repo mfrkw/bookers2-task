@@ -1,41 +1,39 @@
-<div class="container">
-	<div class="row">
-		<div class ="col-md-6 col-md-offset-3">
-      <div class ="edit-book">
-			<h2>Editing Book</h2>
-   
-        <div id="error_explanation">
-        <% if @book.errors.any? %>
-          <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
-              <ul>
-                 <% @book.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                 <% end %>
-                </ul>
+<div class="container px-5 px-sm-0">
+  <% if @book.errors.any? %>
+    <h3><%= @book.errors.count %> errors prohibited this obj from being saved:</h3>
+    <div id="error_explanation" class="alert alert-danger">
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
-       </div>
+      </ul>
+     </div>
+  <% end %>
 
-
-            <%= form_for(@book) do |f| %>
-
-                <label class = "">Title</label>
-                    <div class="edit-text">
-                        <%= f.text_field :title,class:"form-control m-4" %>
-                    </div>
-
-
-                <label class = "">Opinion</label>
-                    <div class="edit-text">
-                        <%= f.text_area :body,class:"form-control m-4"  %>
-                    </div>
-                    <div class="update-book">
-                        <%= f.submit "Update book", class:"btn btn-primary btn-block"%>
-                    </div>
-                    <%=link_to "Show",book_path(@book.id)%>|
-
-                    <%= link_to "Back",books_path%>
-            <% end %>
-		  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+       <h2>Editing Book</h2>
+        <%= form_for(@book) do |f| %>
+          <label>Title</label>
+          <br>
+          <%= f.text_field :title, class: "col-md-12" %>
+          <br>
+          <label>opinion</label>
+          <br>
+            <%= f.text_area :body, class: "col-md-12" %>
+          <br>
+          <br>
+          <br>
+          <div class="actions">
+            <%= f.submit 'Update Book', class: "btn btn-success" %>
+          </div>
+          <br>
+          <td><%= link_to "Show", book_path %></td>
+          <td>|</td>
+          <td><%= link_to "Back", books_path %></td>
+        <% end %>
+      </div>
     </div>
-	</div>
+  </div>
 </div>
