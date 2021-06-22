@@ -1,0 +1,35 @@
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'users/user', user: @user %>
+
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+        <table class="table table-striped">
+          <thaed>
+            <tr align="center">
+              <th></th>
+              <th></th>
+              <th></th>
+              <th colspan="3"></th>
+            </tr>
+          </thaed>
+        <tbody>
+          <tr>
+            <td>
+              <%= attachment_image_tag @bookdetail.user, :profile_image, :fill, 90, 100, format:'jpeg', fallback: "no_image.jpg" %>
+              <%= link_to @bookdetail.user.name, user_path(@bookdetail.user.id) %>
+            </td>
+            <td><%= link_to @bookdetail.title, book_path(@bookdetail.id) %></td>
+            <td><%= @bookdetail.body %></td>
+            <% if @bookdetail.user_id == current_user.id %>
+            <th><%= link_to "Edit", edit_book_path(@bookdetail.id), class: "btn-sm btn-success edit_book_#{@bookdetail.id}" %></th>
+            <th><%= link_to "Destroy", book_path(@bookdetail.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger destroy_book_#{@bookdetail.id}" %></th>
+            <% end %>
+          </tr>
+        </tbody>
+        </table>
+    </div>
+  </div>
+</div>

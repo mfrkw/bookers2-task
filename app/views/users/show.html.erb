@@ -1,36 +1,35 @@
-<% if flash[:success] %>
-  <div class="flash">
-    <%= flash[:success] %>
-  </div>
-<% end %>
-
-
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-      <%= render '/users/list', user: @user, book: @book %>
-    
-      
+     <%= render 'books/list', book: @book, user: @user %>
     </div>
+  
     <div class="col-md-8 offset-md-1">
-    <h2>Books</h2>
-    <table class="table table-hover">
-      <thead>
-        <th></th>
-        <th>Title</th>
-        <th>Opinion</th>
-        <th colspan="3"></th>
-      </thead>
-
-      <% @books.each do |f| %>
-      <tr>
-        <td><%= link_to attachment_image_tag(f.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"),user_path(f.user.id) %></td>
-        
-        <td><%= link_to f.title, book_path(f.id) %></td>
-        <td><%= f.body %></td>
-      <% end %>
-      </tr>
-    </table>
-    </div>
+      <h2>Books</h2>
+        <table class="table table-striped">
+          <thaed>
+            <tr align="center">
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+              <th colspan="3"></th>
+            </tr>
+          </thaed>
+         <tbody>
+          <tr>
+            <td>
+              <% @books.each do |book| %>
+              <%= link_to user_path(@user.id) do %>
+              <%= attachment_image_tag book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "NoImage.jpg" ,size:"40x40" %>  
+              <% end %>
+            </td>
+            <td><%=link_to book.title, book_path(book.id)%></td>
+            <td><%= book.body %></td>
+              <% end %>
+          </tr>
+         </tbody>
+        </table>
+    </div>  
   </div>
 </div>
+  

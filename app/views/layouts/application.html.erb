@@ -4,24 +4,63 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
+  <body class="d-flex flex-column vh-100">
+   <header>
 
-  <body>
-    <% if user_signed_in? %>
-      <%= link_to "Home", user_path(current_user.id) %>
-      <%= link_to 'Users', users_path %>
-      <%= link_to "Books", books_path %>
-      <%= link_to "logout", destroy_user_session_path, method: :delete %>
-      
-    <% else %>
-      <%= link_to "Home", root_path %>
-      <%= link_to "About", about_path %>
-      <%= link_to "sign up", new_user_registration_path %>
-      <%= link_to "login", new_user_session_path %>
-    <% end %>  
-    <%= yield %>
+      <nav class="navbar navbar-expand-lg navbar- bg-dark text-white">
+         <div class="navbar-brand">
+        <span class="Bookers-title"><%= link_to 'Bookers', root_path ,:style=>"text-decoration:none; color:white"%></span>
+         </div>
+       <ul class="navbar-nav ml-auto">
+         <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+         <li class="nav-item"><i class="fas fa-home"></i><%= link_to '  Home', user_path(current_user.id) ,:style=>"text-decoration:none; color:white"%></li>
+         <li class="nav-item"><i class="fas fa-users"></i><%= link_to "  Users", "/users",class:"users" ,:style=>"text-decoration:none; color:white "%></li>
+         <li class="nav-item"><i class="fas fa-book-open"></i><%= link_to '  Books', books_path ,:style=>"text-decoration:none; color:white "%></li>
+         <li class="nav-item"><i class="fas fa-sign-out-alt"></i><%= link_to "  logout", destroy_user_session_path, method: :delete ,:style=>"text-decoration:none; color:white "%></li>
+
+
+       <% else %>
+         <li class="nav-item"><i class="fas fa-home"></i><%= link_to"  Home",root_path ,:style=>"text-decoration:none; color:white;fas fa-home"%></li>
+         <li class="nav-item"><i class="fas fa-link"></i><%= link_to"  About",home_about_path ,:style=>"text-decoration:none; color:white "%></li>
+         <li class="nav-item"><i class="fas fa-user-plus"></i><%= link_to "  sign up", new_user_registration_path ,:style=>"text-decoration:none; color:white "%></li>
+         <li class="nav-item"><i class="fas fa-sign-in-alt"></i><%= link_to "  login", new_user_session_path ,:style=>"text-decoration:none; color:white "%></li>
+       <% end %>
+      </ul>
+     </nav>
+    </div>
+ </header>
+
+ <div class="body">
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+ </div>
+
+ <%= yield %>
+
+
+  <footer>
+    <div class='container mt-5'>
+      <div class='row'>
+        <div class='mx-auto'>
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </div>
+    </div>
+  </footer>
   </body>
 </html>

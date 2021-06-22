@@ -1,0 +1,39 @@
+<div class="container px-5 px-sm-0">
+  <% if @book.erros.any? %>
+   <h3><%= @book.erros.count %></h3>
+   <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+      <% end %>  
+    </ul>
+   </div>
+  <% end %>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h2>Editing Book</h2>
+        <%= form_for(@book) do |f| %>
+          <label>Title</label>
+          <br>
+          <%= f.text_field :title, class: "col-md-12" %>
+          <br>
+          <label>opinion</label>
+          <br>
+          <%= f.text_area :body, class: "col-md-12" %>
+          <br>
+          <br>
+          <br>
+          <div class="actions">
+            <%= f.submit 'Update Book', class: "btn btn-primary col-md-10" %>
+          </div>
+          <br>
+          <td><%= link_to "Show", book_path %></td>
+          <td><%= link_to "Back", books_path %></td>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>        
