@@ -1,24 +1,16 @@
-<% if @book.errors.any? %>
-  <h3><%= book.errors.count %> errors prohibited this obj from being saved:</h3>
-  <div id="error_explanation" class="alert alert-danger">
-    <ul>
-      <% book.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+
+
 <div class="info">
   <h1>User info</h1>
   <div class="profile-container">
   <%= attachment_image_tag user, :profile_image, :fill, 90, 100, format: 'jpeg', fallback: "no_image.jpg" %>
   </div>
-      
+
       <table class="table">
           <tbody>
             <tr>
               <th>name</th>
-              <td><%= user.name %></td>
+              <td><%= @user.name %></td>
             </tr>
             <tr>
               <th>introduction</th>
@@ -31,10 +23,10 @@
             <i class="fas fa-user-cog"></i>
             </button>
             <% end %>
-          
+
 
     <h2>New book</h2>
-      <%= form_for(book) do |f| %>
+      <%= form_for(@book) do |f| %>
           <label>Title</label>
       <br>
           <%= f.text_field :title, class: "col-md-12 book_title" %>
@@ -50,5 +42,4 @@
       </div>
 
       <% end %>
-  </div>    
-      
+  </div>

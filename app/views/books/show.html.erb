@@ -18,16 +18,16 @@
         <tbody>
             <tr>
               <td>
-                <%= attachment_image_tag @bookdetail.user, :profile_image, :fill, 90, 100, format:'jpeg', fallback: "no_image.jpg" %>
-                <%= link_to @bookdetail.user.name, user_path(@bookdetail.user.id) %>
+                <%= attachment_image_tag @user, :profile_image, :fill, 90, 100, format:'jpeg', fallback: "no_image.jpg" %>
+                <%= link_to @user.name, user_path(@user.id) %>
               </td>
-                <td><%= link_to @bookdetail.title, book_path(@bookdetail.id) %></td>
-                <td><%= @bookdetail.body %></td>
-                <% if @bookdetail.user_id == current_user.id %>
+                <td><%= link_to @book_1.title, book_path(@book_1.id) %></td>
+                <td><%= @book_1.body %></td>
+                <% if @book_1.user_id == current_user.id %>
             
-                <th><%= link_to "Edit", edit_book_path(@bookdetail.id), class: "btn-sm btn-success edit_book_#{@bookdetail.id}" %></th>
-                <th><%= link_to "Destroy", book_path(@bookdetail.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn-sm btn-danger destroy_book_#{@bookdetail.id}" %></th>
-                <% end %>
+                <td><%=link_to "Edit",edit_book_path(@book_1.id)%></td>
+                <td><%=link_to "Destroy",book_path(@book_1.id), method: :delete, "date-confim"=>"本当に削除しますか?"%></td>
+                <% end %>            
             </tr>
           </tbody>
         </table>
